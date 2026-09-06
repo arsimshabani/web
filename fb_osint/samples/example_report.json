@@ -1,0 +1,34 @@
+{
+  "theme": "solar energy",
+  "generated_at": "2026-09-06T22:00:00Z",
+  "pages_scanned": 1,
+  "posts_scanned": 2,
+  "matching_posts": 1,
+  "total_reactions": 130,
+  "total_comments": 25,
+  "total_shares": 11,
+  "top_terms": [
+    {"term": "solar", "count": 1},
+    {"term": "energy", "count": 1}
+  ],
+  "page_summaries": [
+    {
+      "id": "1",
+      "name": "Green News",
+      "username": "greennews",
+      "category": "Media",
+      "fan_count": 1000,
+      "theme_hits": 1
+    }
+  ],
+  "top_posts": [
+    {
+      "page_name": "Green News",
+      "message": "New investment in solar energy across the region",
+      "score": 5.0
+    }
+  ],
+  "notes": [
+    "Example offline report. Live scans require FACEBOOK_ACCESS_TOKEN."
+  ]
+}
