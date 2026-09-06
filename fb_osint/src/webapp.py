@@ -1,7 +1,8 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
-from typing import List, Optional
+from typing import List
 
 from fastapi import FastAPI, Form, Request
 from fastapi.responses import HTMLResponse, JSONResponse
@@ -32,22 +33,21 @@ class ScanRequest(BaseModel):
 @app.get("/", response_class=HTMLResponse)
 def home(request: Request) -> HTMLResponse:
     return templates.TemplateResponse(
+        request,
         "index.html",
-        {"request": request, "report": None, "error": None, "theme": "", "pages": ""},
+        {"report": None, "error": None, "theme": "", "pages": ""},
     )
 
 
 @app.get("/demo", response_class=HTMLResponse)
 def demo(request: Request) -> HTMLResponse:
     """Offline sample report so the UI can be explored without a Meta token."""
-    import json
-
     sample_path = ROOT / "samples" / "example_report.json"
     report = json.loads(sample_path.read_text(encoding="utf-8"))
     return templates.TemplateResponse(
+        request,
         "index.html",
         {
-            "request": request,
             "report": report,
             "error": None,
             "theme": report.get("theme", ""),
@@ -75,9 +75,9 @@ def scan_form(
             try_search=not bool(page_list),
         )
         return templates.TemplateResponse(
+            request,
             "index.html",
             {
-                "request": request,
                 "report": report.to_dict(),
                 "error": None,
                 "theme": theme,
@@ -86,9 +86,9 @@ def scan_form(
         )
     except Exception as exc:  # noqa: BLE001 - surface to UI
         return templates.TemplateResponse(
+            request,
             "index.html",
             {
-                "request": request,
                 "report": None,
                 "error": str(exc),
                 "theme": theme,
